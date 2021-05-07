@@ -1,4 +1,4 @@
-import { EventEmitter } from 'events';
+import {EventEmitter} from 'events';
 
 export class EventBus extends EventEmitter {
   public readonly LIST_ADD: string = 'list_add';

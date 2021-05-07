@@ -1,10 +1,10 @@
-import { Telegraf } from 'telegraf';
+import {Telegraf} from 'telegraf';
 import TelegrafContext from 'telegraf/typings/context';
-import { Injectable } from '@nestjs/common';
+import {Injectable} from '@nestjs/common';
 
-import { ConfigService } from '../common/config.service';
-import { EventBus } from '../common/event-bus.service';
-import { TelegramMessage } from './telegram.message';
+import {ConfigService} from '../common/config.service';
+import {EventBus} from '../common/event-bus.service';
+import {TelegramMessage} from './telegram.message';
 
 @Injectable()
 export class TelegramService {
@@ -16,13 +16,10 @@ export class TelegramService {
     this.bot = new Telegraf(botToken);
 
     this.getCommandEventMapping(eventBus).forEach(([command, event]) => {
-      this.bot.command(
-        command,
-        (ctx: TelegrafContext & { command?: string }) => {
-          ctx.command = command;
-          eventBus.emit(event, new TelegramMessage(ctx));
-        },
-      );
+      this.bot.command(command, (ctx: TelegrafContext & {command?: string}) => {
+        ctx.command = command;
+        eventBus.emit(event, new TelegramMessage(ctx));
+      });
     });
   }
 

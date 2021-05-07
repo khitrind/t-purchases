@@ -1,6 +1,6 @@
-import { Module, Logger } from '@nestjs/common';
-import { ConfigService } from './config.service';
-import { EventBus } from './event-bus.service';
+import {Module, Logger} from '@nestjs/common';
+import {ConfigService} from './config.service';
+import {EventBus} from './event-bus.service';
 
 @Module({
   providers: [

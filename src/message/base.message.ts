@@ -1,4 +1,4 @@
-import { IMessage } from './i-message';
+import {IMessage} from './i-message';
 
 type BaseMessageParams = {
   chatId: number;

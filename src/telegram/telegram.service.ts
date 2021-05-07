@@ -11,7 +11,7 @@ export class TelegramService {
   private bot: Telegraf;
 
   constructor(config: ConfigService, eventBus: EventBus) {
-    const botToken: string = config.get('TELEGRAM_BOT_TOKEN');
+    const botToken = config.get('TELEGRAM_BOT_TOKEN');
 
     this.bot = new Telegraf(botToken);
 

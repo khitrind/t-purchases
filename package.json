@@ -24,6 +24,7 @@
     "@nestjs/common": "^7.6.15",
     "@nestjs/core": "^7.6.15",
     "@nestjs/platform-express": "^7.6.15",
+    "dotenv": "9.0.0",
     "envalid": "7.1.0",
     "events": "3.3.0",
     "reflect-metadata": "^0.1.13",

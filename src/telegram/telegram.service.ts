@@ -12,11 +12,13 @@ export class TelegramService {
 
   constructor(config: ConfigService, eventBus: EventBus) {
     const botToken = config.get('TELEGRAM_BOT_TOKEN');
+    console.log(process.env.TELEGRAM_BOT_TOKEN);
 
     this.bot = new Telegraf(botToken);
 
     this.getCommandEventMapping(eventBus).forEach(([command, event]) => {
       this.bot.command(command, (ctx: TelegrafContext & {command?: string}) => {
+        console.log(command);
         ctx.command = command;
         eventBus.emit(event, new TelegramMessage(ctx));
       });

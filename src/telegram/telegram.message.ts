@@ -19,6 +19,6 @@ export class TelegramMessage extends BaseMessage implements IMessage {
   }
 
   public send(args: any): Promise<any> {
-    return this.ctx.replyWithHTML(args);
+    return this.ctx.reply(args);
   }
 }

@@ -41,12 +41,6 @@ export abstract class BaseMessage implements IMessage {
     this.lang = lang;
   }
 
-  /**
-   * Retunrn name of player
-   * @readonly
-   * @type {string}
-   * @memberOf BaseMessage
-   */
   get name(): string {
     const firstName: string = this.firstName || '';
     const lastName: string = this.lastName || '';
@@ -54,51 +48,23 @@ export abstract class BaseMessage implements IMessage {
     return `${firstName} ${lastName}`.trim();
   }
 
-  /**
-   * Returns status of answer (reply)
-   * @returns {string}
-   * @memberOf BaseMessage
-   */
   public getReplyStatus(): string {
     return this.replyStatus;
   }
 
-  /**
-   * Returns data for answer (reply)
-   * @returns {string}
-   * @memberOf BaseMessage
-   */
   public getReplyData(): any {
     return this.replyData;
   }
 
-  /**
-   * Sets status of answer
-   * @param {string} status
-   * @returns {IMessage}
-   *
-   * @memberOf BaseMessage
-   */
   public setStatus(status: string): IMessage {
     this.replyStatus = status;
     return this;
   }
 
-  /**
-   * Attaches data for answer
-   * @param {*} data
-   * @returns {IMessage}
-   * @memberOf BaseMessage
-   */
   public withData(data: string): IMessage {
     this.replyData = data;
     return this;
   }
 
-  /**
-   * @param {*} args
-   * @returns {string}
-   * @memberOf BaseMessage
-   */
   abstract send(args: any): void;
 }

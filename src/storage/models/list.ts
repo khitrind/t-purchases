@@ -5,6 +5,7 @@ import {
   OneToMany,
   ManyToOne,
   JoinColumn,
+  BeforeInsert,
 } from 'typeorm';
 import {Chat} from './chat';
 import {Purchase} from './purchase';
@@ -29,4 +30,9 @@ export class List {
   @OneToMany((type) => Purchase, (purchase) => purchase.list)
   @JoinColumn()
   purchase!: Purchase[];
+
+  @BeforeInsert()
+  beforeInsertActions() {
+    this.active = true;
+  }
 }

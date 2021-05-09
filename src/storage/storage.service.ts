@@ -22,13 +22,6 @@ export class StorageService {
     return this.dbConnection;
   }
 
-  /**
-   * Finds chat for given chatId
-   * If chat is not exists then creates it and returns it
-   * @param {number} chatId
-   * @returns {Promise<Chat>}
-   * @memberOf StorageService
-   */
   public async ensureChat(chatId: number): Promise<Chat> {
     const chat = await this.chatRepository.findOne({chatId});
 
@@ -42,23 +35,30 @@ export class StorageService {
     return this.chatRepository.save(newChat);
   }
 
-  /**
-   * Creates new active event and append it to chat
-   * @param {Chat} chat
-   * @param {Date} date
-   * @returns {Promise<Event>}
-   * @memberOf StorageService
-   */
   public addNewList(
     chat: Chat,
     {date, name}: Pick<List, 'date' | 'name'>,
   ): Promise<List> {
     const list = new List();
     list.chat = chat;
-    list.active = true;
     list.date = date;
     list.name = name;
 
     return this.listRepository.save(list);
+  }
+
+  public findAllLists(chat: Chat): Promise<List[]> {
+    return this.listRepository.find({where: {chat}});
+  }
+
+  public getList(chat: Chat, name: string) {
+    return this.listRepository.findOne({where: {chat, name}});
+  }
+
+  public addPurchase(chat: Chat, list: List, name: string) {
+    const purchase = new Purchase();
+    purchase.name = name;
+    purchase.list = list;
+    return this.purchaseRepository.save(purchase);
   }
 }

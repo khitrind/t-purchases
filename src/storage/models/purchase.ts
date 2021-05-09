@@ -4,6 +4,7 @@ import {
   Column,
   ManyToOne,
   JoinColumn,
+  BeforeInsert,
 } from 'typeorm';
 import {List} from './list';
 
@@ -27,4 +28,11 @@ export class Purchase {
   @ManyToOne((type) => List, (list) => list.purchase)
   @JoinColumn()
   list!: List;
+
+  @BeforeInsert()
+  beforeInsertActions() {
+    this.description = '';
+    this.link = '';
+    this.active = true;
+  }
 }

@@ -37,7 +37,7 @@ export class TelegramService {
       ['list_add', eventBus.LIST_ADD],
       ['list_remove', eventBus.LIST_REMOVE],
       ['info', eventBus.LIST_INFO],
-      ['add', eventBus.PURCHASE_ADD],
+      ['purchase_add', eventBus.PURCHASE_ADD],
       ['remove', eventBus.PURCHASE_REMOVE],
     ];
   }
